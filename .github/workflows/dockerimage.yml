@@ -13,5 +13,5 @@ jobs:
     - name: Build the Docker image
       run: 
         docker build . --file al2/x86_64/standard/1.0/Dockerfile --tag al2:$(date +%s)
-        docker build . --file ubuntu/standard/2.0/Dockerfile --tage ubuntu:$(date +%s)
+        docker build . --file ubuntu/standard/2.0/Dockerfile --tag ubuntu:$(date +%s)
       
