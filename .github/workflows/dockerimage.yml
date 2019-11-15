@@ -10,12 +10,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build the Docker image
+    - name: Docker Login
+      run:  docker login docker.pkg.github.com -u ${{ env.GITHUB_ACTOR }} -p ${{ secrets.GITHUB_TOKEN }}
+    - name: Build AL2 Docker image
       run: |
         cd al2/x86_64/standard/1.0
         VERSION=$(date +%s)
         docker build . --tag al2:${VERSION}
+    - name: Push Docker Image
+      run: |
         docker login docker.pkg.github.com -u ${{ env.GITHUB_ACTOR }} -p ${{ secrets.GITHUB_TOKEN }}
         docker tag al2:${VERSION} docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/al2:${VERSION}
         docker push docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/al2:${VERSION}
+
+      
       
