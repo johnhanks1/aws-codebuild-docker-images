@@ -45,7 +45,7 @@ jobs:
         run: export HELLO="HELLO"
       - name: is HELLO set
         run: |
-          if [ "HELLO" = $HELLO ]
+          if [ "HELLO" = "$HELLO ]
           then
             echo "HELLO set"
           else
