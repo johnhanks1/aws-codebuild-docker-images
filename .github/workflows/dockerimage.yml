@@ -12,13 +12,14 @@ jobs:
     - name: Build AL2 Docker image
       run: |
         cd al2/x86_64/standard/1.0
-        export VERSION=$(date +%s)
+        VERSION=$(date +%s)
         docker build . --tag al2:${VERSION}
-    - name: Push Docker Image
-      run: |
         docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
         docker tag al2:${VERSION} docker.pkg.github.com/${GITHUB_REPOSITORY}/al2:${VERSION}
         docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/al2:${VERSION}
+    - name: Push Docker Image
+      run: |
+
 
   build-ubunutu-standard-2:
     runs-on: ubuntu-latest
@@ -32,26 +33,9 @@ jobs:
         export VERSION=$(date +%s)
         export IMAGE_NAME="ubunutu_standard_2:${VERSION}"
         docker build . --tag ${IMAGE_NAME}
-    - name: Push Docker Image
-      run: |
         docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
         docker tag ${IMAGE_NAME} docker.pkg.github.com/${GITHUB_REPOSITORY}/${IMAGE_NAME}
         docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/${IMAGE_NAME}
-  test-env-setup:
-    name: Test exports
-    runs-on: ubuntu-latest
-    steps:
-      - name: set HELLO
-        run: export HELLO="HELLO"
-      - name: is HELLO set
-        run: |
-          if [ "HELLO" = "$HELLO" ]
-          then
-            echo "HELLO set"
-          else
-            echo "FAIL"
-            exit 1
-          fi
       
 
 
