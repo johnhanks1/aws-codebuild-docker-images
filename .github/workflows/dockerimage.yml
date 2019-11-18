@@ -39,7 +39,7 @@ jobs:
   test-action-ubuntu:
     runs-on: [ubuntu-latest]
     steps:
-      - run: ubuntu/standard/2.0
+      - run: cd ubuntu/standard/2.0
       - uses: actions/mattdavis0351/docker-gpr
         with:
           token: secrets.GITHUB_TOKEN
@@ -47,7 +47,7 @@ jobs:
   test-action-al2:
     runs-on: [ubuntu-latest]
     steps:
-      - run: al2/x86_64/standard/1.0
+      - run: cd al2/x86_64/standard/1.0
       - uses: actions/mattdavis0351/docker-gpr
         with:
           token: secrets.GITHUB_TOKEN
