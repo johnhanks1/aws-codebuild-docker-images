@@ -43,7 +43,7 @@ jobs:
       - run: cd ubuntu/standard/2.0
       - uses: mattdavis0351/actions/docker-gpr@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           image-name: ubuntu
   test-action-al2:
     runs-on: [ubuntu-latest]
@@ -52,7 +52,7 @@ jobs:
       - run: cd al2/x86_64/standard/1.0
       - uses: mattdavis0351/actions/docker-gpr@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           image-name: al2
   
       
