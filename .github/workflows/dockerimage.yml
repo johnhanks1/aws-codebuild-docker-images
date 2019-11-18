@@ -3,39 +3,6 @@ name: Docker Image CI
 on: [push]
 
 jobs:
-  build-al2:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Docker Login
-      run:  docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
-    - name: Build AL2 Docker image
-      run: |
-        cd al2/x86_64/standard/1.0
-        VERSION=$(date +%s)
-        docker build . --tag al2:${VERSION}
-        docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
-        docker tag al2:${VERSION} docker.pkg.github.com/${GITHUB_REPOSITORY}/al2:${VERSION}
-        docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/al2:${VERSION}
-    - name: Push Docker Image
-      run: |
-
-
-  build-ubunutu-standard-2:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Docker Login
-      run:  docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
-    - name: Build Standard 2 Docker image
-      run: |
-        cd ubuntu/standard/2.0
-        export VERSION=$(date +%s)
-        export IMAGE_NAME="ubunutu_standard_2:${VERSION}"
-        docker build . --tag ${IMAGE_NAME}
-        docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
-        docker tag ${IMAGE_NAME} docker.pkg.github.com/${GITHUB_REPOSITORY}/${IMAGE_NAME}
-        docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/${IMAGE_NAME}
   test-action-ubuntu:
     runs-on: [ubuntu-latest]
     steps:
