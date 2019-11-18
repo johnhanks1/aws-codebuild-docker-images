@@ -39,6 +39,7 @@ jobs:
   test-action-ubuntu:
     runs-on: [ubuntu-latest]
     steps:
+      - uses: actions/checkout@v1
       - run: cd ubuntu/standard/2.0
       - uses: mattdavis0351/actions/docker-gpr@v1
         with:
@@ -47,6 +48,7 @@ jobs:
   test-action-al2:
     runs-on: [ubuntu-latest]
     steps:
+      - uses: actions/checkout@v1
       - run: cd al2/x86_64/standard/1.0
       - uses: mattdavis0351/actions/docker-gpr@v1
         with:
